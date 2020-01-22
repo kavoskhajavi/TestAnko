@@ -4,14 +4,8 @@ package com.alaan.test.view
 import android.graphics.Color
 import android.widget.LinearLayout
 import com.alaan.test.R
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.button
-import org.jetbrains.anko.margin
+import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.verticalLayout
-import org.jetbrains.anko.wrapContent
 
 class MainAvtivityUI(orientation1:Int) :AnkoComponent<MainActivity> {
 
@@ -39,6 +33,7 @@ class MainAvtivityUI(orientation1:Int) :AnkoComponent<MainActivity> {
                 id = R.id.vertical
                 setText(R.string.MOVE)
                 backgroundColor = Color.RED
+                textColor = Color.WHITE
 
             }.lparams(width  = wrapContent , height = wrapContent) {
 
@@ -51,6 +46,7 @@ class MainAvtivityUI(orientation1:Int) :AnkoComponent<MainActivity> {
             button{
                 setText(R.string.VERTICAL)
                 backgroundColor = Color.BLUE
+                textColor = Color.WHITE
                 onClick {
                     ui.owner.viewChangeOrientation(LinearLayout.VERTICAL)
                 }
