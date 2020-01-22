@@ -37,7 +37,7 @@ class MainAvtivityUI(orientation1:Int) :AnkoComponent<MainActivity> {
 
             button{
                 id = R.id.vertical
-                setText("Move")
+                setText(R.string.MOVE)
                 backgroundColor = Color.RED
 
             }.lparams(width  = wrapContent , height = wrapContent) {
@@ -49,7 +49,7 @@ class MainAvtivityUI(orientation1:Int) :AnkoComponent<MainActivity> {
 
 
             button{
-                setText("VERTICAL")
+                setText(R.string.VERTICAL)
                 backgroundColor = Color.BLUE
                 onClick {
                     ui.owner.viewChangeOrientation(LinearLayout.VERTICAL)
@@ -61,7 +61,7 @@ class MainAvtivityUI(orientation1:Int) :AnkoComponent<MainActivity> {
 
             button{
 
-                setText("HORIZONTAL")
+                setText(R.string.HORIZONTAL)
                 backgroundColor = Color.CYAN
                 onClick {
                     ui.owner.viewChangeOrientation(LinearLayout.HORIZONTAL)
