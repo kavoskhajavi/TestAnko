@@ -3,5 +3,6 @@
     <item name="vertical" format="integer" type="id"/>
     <item name="idParent" format="integer" type="id"/>
     <item name="idParentButtonMove" format="integer" type="id"/>
+    <item name="addButton" format="integer" type="id"/>
 
 </resources>
