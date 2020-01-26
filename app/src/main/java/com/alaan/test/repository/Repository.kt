@@ -1,4 +1,4 @@
-package com.alaan.test.dagger
+package com.alaan.test.repository
 import javax.inject.Inject
 import javax.inject.Singleton
 

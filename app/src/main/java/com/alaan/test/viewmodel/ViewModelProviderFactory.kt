@@ -1,6 +1,7 @@
-package com.alaan.test.dagger
+package com.alaan.test.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.alaan.test.repository.Repository
 
 import javax.inject.Inject
 

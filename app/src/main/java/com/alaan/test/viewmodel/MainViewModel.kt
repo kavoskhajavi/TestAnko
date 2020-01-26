@@ -1,5 +1,6 @@
-package com.alaan.test.dagger
+package com.alaan.test.viewmodel
 import androidx.lifecycle.ViewModel
+import com.alaan.test.repository.Repository
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 

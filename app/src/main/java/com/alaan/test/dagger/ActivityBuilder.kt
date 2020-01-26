@@ -1,7 +1,6 @@
 package com.alaan.test.dagger
 import com.alaan.test.view.MainActivity
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 
 @Module

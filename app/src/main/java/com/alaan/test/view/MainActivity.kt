@@ -1,17 +1,12 @@
 package com.alaan.test.view
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
-import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.widget.Button
-import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProviders
-import com.alaan.test.dagger.MainViewModel
-import com.alaan.test.dagger.ViewModelProviderFactory
+import com.alaan.test.viewmodel.MainViewModel
+import com.alaan.test.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
-import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.setContentView
 import javax.inject.Inject
 
@@ -20,10 +15,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     public lateinit var factory: ViewModelProviderFactory
-    public lateinit var viewModel:MainViewModel
-
-    val metrics = DisplayMetrics()
-
+    public lateinit var viewModel: MainViewModel
+    var dpHeight = 0F
+    var dpWidth = 0F
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,16 +29,11 @@ class MainActivity : DaggerAppCompatActivity() {
         display.getMetrics(outMetrics)
 
         val density = resources.displayMetrics.density
-        val dpHeight = outMetrics.heightPixels / density
-        val dpWidth = outMetrics.widthPixels / density
+         dpHeight = outMetrics.heightPixels / density
+         dpWidth = outMetrics.widthPixels / density
 
-        MainAvtivityUI(0,dpHeight.toInt(),dpWidth.toInt()).setContentView(this)
-
-        moveView()
-
-
-
-
+        // dpHeight.toInt(),dpWidth.toInt() calculate screen phone
+        MainAvtivityUI(0,dpHeight.toInt(),dpWidth.toInt(),0).setContentView(this)
 
 
 
@@ -55,37 +44,14 @@ class MainActivity : DaggerAppCompatActivity() {
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java!!)
     }
 
-    fun viewChangeOrientation(orientation:Int,button: Button,ln:LinearLayout){
+    //This method gets clicked on the button
+    // count field for rest activity
+    fun viewChangeOrientation(count:Int,orientation: Int){
 
-        ln.backgroundColor = Color.YELLOW
-
-       // ln.addView(button)
-       // ln.removeAllViews()
-       // ln.addView(button)
-
-        moveView()
+        MainAvtivityUI(orientation,dpHeight.toInt(),dpWidth.toInt(),count).setContentView(this)
 
     }
 
-
-    @SuppressLint("ClickableViewAccessibility")
-    fun moveView(){
-
-//        val button = find<Button>(id.vertical)
-//        val listener = View.OnTouchListener(function = {view, motionEvent ->
-//
-//            if (motionEvent.action == MotionEvent.ACTION_MOVE) {
-//
-//                view.y = motionEvent.rawY - view.height/2
-//                view.x = motionEvent.rawX - view.width/2
-//            }
-//
-//            true
-//
-//        })
-//
-//        button.setOnTouchListener(listener)
-    }
 }
 
 
