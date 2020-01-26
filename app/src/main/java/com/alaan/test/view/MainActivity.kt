@@ -1,46 +1,47 @@
 package com.alaan.test.view
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProviders
 import com.alaan.test.dagger.MainViewModel
 import com.alaan.test.dagger.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.setContentView
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 
 class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
-     public lateinit var factory: ViewModelProviderFactory
-     public lateinit var viewModel:MainViewModel
+    public lateinit var factory: ViewModelProviderFactory
+    public lateinit var viewModel:MainViewModel
+
+    val metrics = DisplayMetrics()
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
-        MainAvtivityUI(0).setContentView(this)
+
+        val display = windowManager.defaultDisplay
+        val outMetrics = DisplayMetrics()
+        display.getMetrics(outMetrics)
+
+        val density = resources.displayMetrics.density
+        val dpHeight = outMetrics.heightPixels / density
+        val dpWidth = outMetrics.widthPixels / density
+
+        MainAvtivityUI(0,dpHeight.toInt(),dpWidth.toInt()).setContentView(this)
+
         moveView()
 
-
-
-
-
-        val metrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(metrics)
-
-        val a = metrics.heightPixels
-        val b = metrics.widthPixels
-
-        print("count "+a +" -----"+b)
-
-        Log.v("DaggerTag",viewModel.name)
 
 
 
@@ -54,10 +55,16 @@ class MainActivity : DaggerAppCompatActivity() {
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java!!)
     }
 
-    fun viewChangeOrientation(orientation:Int){
+    fun viewChangeOrientation(orientation:Int,button: Button,ln:LinearLayout){
 
-        MainAvtivityUI(orientation).setContentView(this)
+        ln.backgroundColor = Color.YELLOW
+
+       // ln.addView(button)
+       // ln.removeAllViews()
+       // ln.addView(button)
+
         moveView()
+
     }
 
 
@@ -80,5 +87,6 @@ class MainActivity : DaggerAppCompatActivity() {
 //        button.setOnTouchListener(listener)
     }
 }
+
 
 
